@@ -4,3 +4,6 @@ node_modules
 
 # Migration history (optional - uncomment if you want to ignore)
 prisma/migrations/
+
+# Prisma generated files
+src/generated/

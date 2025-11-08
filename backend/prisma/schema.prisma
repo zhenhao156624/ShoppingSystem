@@ -25,3 +25,18 @@ model SysUser {
 
   @@map("sys_user")
 }
+
+model Product {
+  product_id    Int     @id @default(autoincrement())
+  category_id   Int
+  product_name  String
+  product_img   String?
+  price         Float
+  stock         Int     @default(0)
+  description   String?
+  status        Int     @default(1) // 0-下架, 1-上架
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  @@map("product")
+}

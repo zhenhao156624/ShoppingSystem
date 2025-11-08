@@ -49,8 +49,46 @@ cd frontend && bun run dev
 ## API测试端点
 
 - `GET /` - 基础响应
-- `GET /api/health` - 健康检查
+- `GET /api/users` - 获取用户列表
+- `GET /api/products` - 获取商品列表
 
 前端运行在 http://localhost:5173
 后端运行在 http://localhost:3000
+
+## 数据库
+
+本项目使用Prisma ORM管理数据库。主要表结构：
+
+### sys_user (用户表)
+- `id` - 用户ID (主键)
+- `username` - 用户名
+- `email` - 邮箱
+- `created_at` - 创建时间
+- `updated_at` - 更新时间
+
+### product (商品表)
+- `product_id` - 商品ID (主键)
+- `category_id` - 分类ID
+- `product_name` - 商品名称
+- `product_img` - 商品图片URL
+- `price` - 价格
+- `stock` - 库存数量
+- `description` - 商品描述
+- `status` - 状态 (0:下架, 1:上架)
+- `created_at` - 创建时间
+- `updated_at` - 更新时间
+
+### 数据库初始化
+```bash
+# 生成Prisma客户端
+cd backend && bunx prisma generate
+
+# 运行种子数据
+cd backend && bun run src/db/seed.ts
+```
+
+## 开发说明
+
+### Prisma生成文件
+`backend/src/generated/` 目录中的文件是Prisma自动生成的，不应提交到版本控制。这些文件会在运行 `bunx prisma generate` 时重新生成。
 

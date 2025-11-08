@@ -22,6 +22,26 @@ const app = new Elysia()
       };
     }
   })
+  .get('/api/products', async () => {
+    try {
+      const products = await prisma.product.findMany();
+      
+      return {
+        message: 'All products from product table',
+        data: products,
+        metadata: {
+          totalCount: products.length,
+          timestamp: new Date().toISOString()
+        }
+      };
+    } catch (error) {
+      return {
+        message: 'Database error',
+        error: error instanceof Error ? error.message : 'Unknown error',
+        timestamp: new Date().toISOString()
+      };
+    }
+  })
   .listen(3000);
 
 console.log(`🚀 Server running at http://localhost:3000`);

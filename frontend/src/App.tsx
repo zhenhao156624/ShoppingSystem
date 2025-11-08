@@ -5,12 +5,13 @@ function App() {
   const [backendData, setBackendData] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string>('')
+  const [selectedEndpoint, setSelectedEndpoint] = useState<'users' | 'products'>('users')
 
-  const fetchUsers = () => {
+  const fetchData = (endpoint: 'users' | 'products') => {
     setLoading(true)
     setError('')
     
-    fetch('/api/users')
+    fetch(`/api/${endpoint}`)
       .then(res => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`)
@@ -28,8 +29,8 @@ function App() {
   }
 
   useEffect(() => {
-    fetchUsers()
-  }, [])
+    fetchData(selectedEndpoint)
+  }, [selectedEndpoint])
 
   if (loading) {
     return <div className="container">正在加载用户数据...</div>
@@ -37,19 +38,28 @@ function App() {
 
   return (
     <div className="container">
-      <h1>用户列表</h1>
+      <h1>API 数据查看器</h1>
+      
+      <div className="controls">
+        <select 
+          value={selectedEndpoint} 
+          onChange={(e) => setSelectedEndpoint(e.target.value as 'users' | 'products')}
+          className="endpoint-selector"
+        >
+          <option value="users">用户列表 (/api/users)</option>
+          <option value="products">商品列表 (/api/products)</option>
+        </select>
+      </div>
       
       {error ? (
         <div className="error">
           <h3>加载失败</h3>
           <p>错误: {error}</p>
-          <button onClick={fetchUsers}>重新加载</button>
         </div>
       ) : (
-        <div className="users-list">
-          <h3>后端返回的值</h3>
+        <div className="data-viewer">
+          <h3>后端返回的原始数据</h3>
           <pre>{JSON.stringify(backendData, null, 2)}</pre>
-          <button onClick={fetchUsers}>刷新数据</button>
         </div>
       )}
     </div>

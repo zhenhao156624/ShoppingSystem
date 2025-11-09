@@ -50,11 +50,11 @@ async function main() {
   const product1 = await prisma.product.create({
     data: {
       category_id: 1,
-      product_name: 'iPhone 15 Pro',
-      product_img: 'https://example.com/iphone15.jpg',
+      product_name: 'iPhone 17 Pro Max',
+      product_img: 'https://images.pexels.com/photos/34624326/pexels-photo-34624326.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       price: 7999.00,
       stock: 50,
-      description: '苹果iPhone 15 Pro，搭载A17 Pro芯片，钛金属设计',
+      description: '苹果iPhone 17 Pro Max，搭载A19 Pro芯片',
       status: 1,
     },
   });
@@ -62,8 +62,8 @@ async function main() {
   const product2 = await prisma.product.create({
     data: {
       category_id: 1,
-      product_name: 'MacBook Air M2',
-      product_img: 'https://example.com/macbook.jpg',
+      product_name: 'MacBook Air M4',
+      product_img: 'https://images.pexels.com/photos/812264/pexels-photo-812264.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       price: 8999.00,
       stock: 30,
       description: '苹果MacBook Air，M2芯片，13.6英寸',
@@ -73,9 +73,9 @@ async function main() {
 
   const product3 = await prisma.product.create({
     data: {
-      category_id: 2,
+      category_id: 4,
       product_name: 'Nike Air Max 270',
-      product_img: 'https://example.com/nike.jpg',
+      product_img: 'https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       price: 899.00,
       stock: 100,
       description: '耐克Air Max 270运动鞋，舒适透气',
@@ -85,9 +85,9 @@ async function main() {
 
   const product4 = await prisma.product.create({
     data: {
-      category_id: 3,
+      category_id: 1,
       product_name: 'Sony WH-1000XM5',
-      product_img: 'https://example.com/sony.jpg',
+      product_img: 'https://images.pexels.com/photos/815494/pexels-photo-815494.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
       price: 2399.00,
       stock: 25,
       description: '索尼降噪耳机WH-1000XM5，顶级降噪体验',

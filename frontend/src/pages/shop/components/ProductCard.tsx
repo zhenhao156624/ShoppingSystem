@@ -12,11 +12,13 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
       key={product.product_id}
       title={product.product_name}
       cover={
-        <img
-          src={product.product_img}
-          alt={product.product_name}
-          className="w-full h-48 object-cover"
-        />
+        <div className="w-64 h-64 mx-auto overflow-hidden flex items-center justify-center bg-gray-200">
+          <img
+            src={product.product_img}
+            alt={product.product_name}
+            className="w-full h-full object-cover"
+          />
+        </div>
       }
       className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow h-full flex flex-col"
     >

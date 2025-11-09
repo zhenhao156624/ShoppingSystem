@@ -24,11 +24,12 @@ model SysUser {
   updated_at      DateTime @updatedAt
 
   @@map("sys_user")
+  Order Order[]
 }
 
 model Product {
   product_id    Int     @id @default(autoincrement())
-  category_id   Int
+  category_id   Int // 1: 电子, 2: 衣服, 3: 食物, 4: 鞋子
   product_name  String
   product_img   String?
   price         Float
@@ -51,5 +52,5 @@ model Order {
   
   user         SysUser  @relation(fields: [user_id], references: [user_id])
 
-  @@map("orde")
+  @@map("order")
 }

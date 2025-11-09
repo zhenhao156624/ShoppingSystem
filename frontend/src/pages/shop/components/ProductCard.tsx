@@ -1,0 +1,49 @@
+import { Card, Button } from '@douyinfe/semi-ui';
+import type { Product } from '../types';
+
+interface ProductCardProps {
+  product: Product;
+  onAddToCart: (product: Product) => void;
+}
+
+const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
+  return (
+    <Card
+      key={product.product_id}
+      title={product.product_name}
+      cover={
+        <img
+          src={product.product_img}
+          alt={product.product_name}
+          className="w-full h-48 object-cover"
+        />
+      }
+      className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow h-full flex flex-col"
+    >
+      <div className="flex flex-col justify-between h-full">
+        <div>
+          <p className="text-sm text-gray-600 line-clamp-1 mb-3">
+            {product.description}
+          </p>
+          <div className="flex justify-between items-center">
+            <p className="text-lg font-bold text-red-600 m-0">
+              ¥{product.price}
+            </p>
+            <p className="text-xs text-gray-400 m-0">库存: {product.stock}</p>
+          </div>
+        </div>
+        <Button
+          block
+          type="primary"
+          onClick={() => onAddToCart(product)}
+          disabled={product.stock === 0}
+          className="mt-4"
+        >
+          {product.stock === 0 ? '缺货' : '加入购物车'}
+        </Button>
+      </div>
+    </Card>
+  );
+};
+
+export default ProductCard;

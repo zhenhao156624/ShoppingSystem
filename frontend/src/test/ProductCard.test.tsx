@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import type { Product } from '../types'
+import type {Product} from "../pages/shop/types";
 
 // Mock product data
 const mockProduct: Product = {

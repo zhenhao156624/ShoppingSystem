@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { useCartStore } from '../store/cartStore'
+import {useCartStore} from "../store/cartStore.ts";
 import type { Product } from '../pages/shop/types'
 
 // Mock product data

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button, Spin, Empty } from '@douyinfe/semi-ui';
-import { ProductCard, CartModal, TopNavBar, ProductFilter } from './components';
+import { useNavigate } from 'react-router-dom';
+import { ProductCard, CartModal, ProductFilter } from './components';
 import type {Product} from './types';
 import { useCartStore } from '../../store/cartStore';
 
@@ -10,6 +11,7 @@ const Shop = () => {
   const [loading, setLoading] = useState(true);
   const [cartVisible, setCartVisible] = useState(false);
   const [filters, setFilters] = useState({ searchTerm: '', category: '' });
+  const navigate = useNavigate();
 
   const { cart, addToCart, removeFromCart, updateQuantity } = useCartStore();
 
@@ -88,18 +90,23 @@ const Shop = () => {
 
   return (
     <div className="w-full min-h-screen bg-gray-100">
-      {/* 顶部主导航栏 */}
-      <TopNavBar />
 
       {/* 商品列表导航栏 */}
       <div className="flex justify-between items-center mb-8 bg-white p-5 rounded-lg shadow-sm m-5">
         <h1 className="text-3xl font-bold text-gray-900 m-0">商品列表</h1>
-        <Button
-          type="primary"
-          onClick={() => setCartVisible(true)}
-        >
-          购物车 ({cart.length})
-        </Button>
+        <div className="flex gap-3">
+          <Button
+            onClick={() => navigate('/order')}
+          >
+            我的订单
+          </Button>
+          <Button
+            type="primary"
+            onClick={() => setCartVisible(true)}
+          >
+            购物车 ({cart.length})
+          </Button>
+        </div>
       </div>
 
       {/* 商品过滤组件 */}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Spin } from '@douyinfe/semi-ui';
+import { Spin, Button } from '@douyinfe/semi-ui';
+import { useNavigate } from 'react-router-dom';
 import { useUserStore } from '../../store/userStore';
 import OrderItem from './components/OrderItem';
 import type { Order as OrderType } from './types';
@@ -9,6 +10,7 @@ const Order = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const user_id = useUserStore((state) => state.user_id);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchOrders();
@@ -50,7 +52,13 @@ const Order = () => {
       <div className="flex items-center justify-center h-screen">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">请先登录</h1>
-          <p className="text-gray-600">访问订单列表需要登录</p>
+          <p className="text-gray-600 mb-6">访问订单列表需要登录</p>
+          <Button
+            type="primary"
+            onClick={() => navigate('/login')}
+          >
+            前往登录
+          </Button>
         </div>
       </div>
     );
